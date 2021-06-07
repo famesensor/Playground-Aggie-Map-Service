@@ -1,27 +1,30 @@
 {
-  "name": "aggie-map-service",
-  "version": "1.0.0",
-  "description": "this is service aggie",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/famesensor/Aggie-Map-Service.git"
-  },
-  "author": "famesensor",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/famesensor/Aggie-Map-Service/issues"
-  },
-  "homepage": "https://github.com/famesensor/Aggie-Map-Service#readme",
-  "devDependencies": {
-    "@types/express": "^4.17.12",
-    "tslint": "^6.1.3",
-    "typescript": "^4.3.2"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+    "name": "aggie-map-service",
+    "version": "1.0.0",
+    "description": "this is service aggie",
+    "main": "server.js",
+    "scripts": {
+        "start": "node dist/server.ts",
+        "build": "tsc",
+        "dev": "nodemon --exec ts-node src/server.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/famesensor/Aggie-Map-Service.git"
+    },
+    "author": "famesensor",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/famesensor/Aggie-Map-Service/issues"
+    },
+    "homepage": "https://github.com/famesensor/Aggie-Map-Service#readme",
+    "devDependencies": {
+        "@types/express": "^4.17.12",
+        "tslint": "^6.1.3",
+        "typescript": "^4.3.2"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    }
 }
