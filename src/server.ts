@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { auth } from './routes/index';
+import { errorHandler } from './middlewares/errorHandler';
 
 const app: express.Express = express();
 
@@ -10,6 +11,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/api/auth', auth);
+
+app.use(errorHandler);
 
 const port: number = 3000 || process.env.PORT;
 
