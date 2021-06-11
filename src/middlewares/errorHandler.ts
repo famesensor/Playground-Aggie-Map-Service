@@ -1,10 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import { errorReponseExtended } from '../models/error';
-import { successReponse } from '../models/reponse';
 
 export const reponseHanler = (
-    reponse: errorReponseExtended | successReponse,
+    err: errorReponseExtended,
     req: Request,
     res: Response,
     next: NextFunction
-) => {};
+) => {
+    console.log(err);
+
+    res.status(err.statusCode);
+};
