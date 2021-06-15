@@ -1,7 +1,11 @@
-export interface map {
+export interface mapInterface {
     mapId?: string;
-    gwavUnit: string;
+    unit: string;
+    polyName: string;
+    locations: location[];
+}
+
+export interface location {
     lat: number;
     lng: number;
-    geohash: string;
 }
