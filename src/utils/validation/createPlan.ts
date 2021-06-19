@@ -14,10 +14,8 @@ export const createPlanValidate = (data: plan): errorValidate => {
     if (validate.isEmpty(data.plan_name))
         errors.plan_name = `plan name is required`;
     if (validate.isEmpty(data.address)) errors.address = `address is required`;
-    if (typeof data.location.lat !== 'number' && data.location.lat === 0)
-        errors.lat = `latitude is required`;
-    if (typeof data.location.lng !== 'number' && data.location.lng === 0)
-        errors.lng = `longitude is required`;
+    if (data.location.lat === 0) errors.lat = `latitude is required`;
+    if (data.location.lng === 0) errors.lng = `longitude is required`;
 
     return {
         isValid: isEmpty(errors),
