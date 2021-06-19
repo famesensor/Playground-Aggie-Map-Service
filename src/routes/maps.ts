@@ -1,11 +1,6 @@
 import { Router } from 'express';
 
-import {
-    GetSoils,
-    GetStone,
-    GetWaters,
-    InsertWaters
-} from '../controllers/maps';
+import { GetSoils, GetStone, GetWaters, CraetePlan } from '../controllers/maps';
 import { protect } from '../middlewares/auth';
 const rotuer = Router();
 
@@ -15,6 +10,6 @@ rotuer.route('/stones').get(protect, GetStone);
 
 rotuer.route('/waters').get(protect, GetWaters);
 
-rotuer.route('/insert-water').post(protect, InsertWaters);
+rotuer.route('/plan').post(protect, CraetePlan);
 
 export default rotuer;
