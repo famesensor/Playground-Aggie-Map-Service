@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 
-import { auth } from './routes/index';
+import { auth, maps } from './routes/index';
 import { errorHandler } from './middlewares/errorHandler';
 
 dotenv.config();
@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/api/auth', auth);
+app.use('/api/map', maps);
 
 app.use(errorHandler);
 

@@ -16,10 +16,10 @@ export const protect = async (
         let token = req.headers.authorization.split('Bearer ')[1];
 
         try {
-            let verify = (await jwt.verify(
+            let verify = jwt.verify(
                 token,
                 process.env.SECRET_KEY!
-            )) as jwtClaims;
+            ) as jwtClaims;
 
             req.user = {
                 user_id: verify.user_id
