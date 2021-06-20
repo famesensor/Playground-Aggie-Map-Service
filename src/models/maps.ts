@@ -1,3 +1,5 @@
+import { admin } from '../configs/firebase.config';
+
 export interface mapInterface {
     Id?: string;
     unit: string;
@@ -21,7 +23,14 @@ export interface plan {
     location: location;
     unit?: string;
     create_by?: string;
-    update_by: string;
-    create_date: Date;
-    update_date: Date;
+    update_by?: string;
+    create_date?: admin.firestore.FieldValue;
+    update_date?: admin.firestore.FieldValue;
+}
+
+export enum StatusUnit {
+    Appropriate = 'Appropriate',
+    Inappropriate = 'Inappropriate',
+    LessAppropriate = 'Less appropriate',
+    VeryAppropriate = 'Very appropriate'
 }
