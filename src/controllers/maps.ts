@@ -181,10 +181,9 @@ export const CraetePlan = asyncHandler(
 
         let unitGwav = getTranslationMapGwav(gwavUnit),
             unitHido = getTranslationMapHido(hidoUnit),
-            unitSoil = splitSoil(soliUnit);
-
-        let sum = unitGwav + unitHido + unitSoil;
-        let unit: string = '';
+            unitSoil = splitSoil(soliUnit),
+            sum = unitGwav + unitHido + unitSoil,
+            unit: string = '';
 
         if (sum < 50) {
             unit = StatusUnit.Inappropriate;
@@ -221,7 +220,7 @@ export const CraetePlan = asyncHandler(
     }
 );
 
-// gat plan list
+// gat plan list...
 export const GetPlanList = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
         const userId = req.user?.user_id;
@@ -258,7 +257,7 @@ export const GetPlanList = asyncHandler(
     }
 );
 
-// get plan by id
+// get plan by id...
 export const GetPlan = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
         const planId = req.params.planId;
