@@ -54,7 +54,11 @@ export const signUp = asyncHandler(
             updateDate: FieldValue.serverTimestamp()
         };
 
-        const userRef = await users.doc(uid).set(detail);
+        try {
+            const userRef = await users.doc(uid).set(detail);
+        } catch (error) {
+            return new ErrorReponse('Internal server error', 500);
+        }
 
         res.status(200).json({
             messsage: 'success'
