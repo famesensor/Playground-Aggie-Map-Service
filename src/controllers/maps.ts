@@ -179,24 +179,8 @@ export const CraetePlan = asyncHandler(
             }
         }
 
-        let unitGwav = getTranslationMapGwav(gwavUnit),
-            unitHido = getTranslationMapHido(hidoUnit),
-            unitSoil = splitSoil(soliUnit);
-
-        let sum = unitGwav + unitHido + unitSoil;
-        let unit: string = '';
-
-        if (sum < 50) {
-            unit = StatusUnit.Inappropriate;
-        } else if (sum < 65) {
-            unit = StatusUnit.LessAppropriate;
-        } else if (sum < 85) {
-            unit = StatusUnit.Appropriate;
-        } else {
-            unit = StatusUnit.VeryAppropriate;
-        }
-
         try {
+            let unit = compareUnit(gwavUnit, hidoUnit, soliUnit);
             let uid = uuidGen('plan');
             let data: plan = {
                 plan_id: uid,
@@ -221,7 +205,7 @@ export const CraetePlan = asyncHandler(
     }
 );
 
-// gat plan list
+// gat plan list...
 export const GetPlanList = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
         const userId = req.user?.user_id;
@@ -258,7 +242,7 @@ export const GetPlanList = asyncHandler(
     }
 );
 
-// get plan by id
+// get plan by id...
 export const GetPlan = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
         const planId = req.params.planId;
@@ -374,6 +358,51 @@ const getTranslationMapSlop = (unit: string): number => {
     }[unit];
 
     return unitsSlop ?? 20;
+};
+
+const getTranslationUnit = (index: number): string => {
+    const unitIndex = {
+        0: `ศักยภาพน้ำบาดาล`,
+        1: `ชั้นหินอุ้มน้ำ`,
+        2: `ชุดดิน`
+    }[index];
+
+    return unitIndex!;
+};
+
+const compareUnit = (
+    gwavUnit: string,
+    hidoUnit: string,
+    soliUnit: string
+): string => {
+    let unitGwav = getTranslationMapGwav(gwavUnit),
+        unitHido = getTranslationMapHido(hidoUnit),
+        unitSoil = splitSoil(soliUnit),
+        sum = unitGwav + unitHido + unitSoil,
+        resultUnit = [unitGwav, unitHido, unitSoil],
+        unit: string = '';
+
+    if (sum < 50) {
+        let value = Math.min(...resultUnit),
+            word = '',
+            index = -1;
+        if (value === 0) {
+            word = `ไม่มีข้อมูล`;
+        } else {
+            word = `ไม่มีคุณภาพเพียงพอจะทำธนาคารน้ำใต้ดิน`;
+        }
+        index = resultUnit.indexOf(value);
+        unit = getTranslationUnit(index);
+        unit = `${StatusUnit.LessAppropriate} เพราะ ${unit} ${word}`;
+    } else if (sum < 65) {
+        unit = StatusUnit.Inappropriate;
+    } else if (sum < 85) {
+        unit = StatusUnit.Appropriate;
+    } else {
+        unit = StatusUnit.VeryAppropriate;
+    }
+
+    return unit;
 };
 
 const splitSoil = (unit: string) => {
