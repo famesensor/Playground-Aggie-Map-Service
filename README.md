@@ -5,7 +5,7 @@ This project is service of aggie map.
 ```
 $ npm install
 ```
-- you must be generate cert-firestore and put to ./src/configs
+- you must be generate cert-firestore and put to ./src/configs before run service 
 
 ## Run Service
 ```
