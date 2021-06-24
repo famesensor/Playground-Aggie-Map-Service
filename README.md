@@ -17,5 +17,8 @@ $ npm run build
 
 # Start
 $ npm start
+
+# Run on Docker(Development)
+$ docker-compose up -d
 ```
 
