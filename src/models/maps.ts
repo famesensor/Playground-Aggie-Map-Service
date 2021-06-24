@@ -29,8 +29,8 @@ export interface plan {
 }
 
 export enum StatusUnit {
-    Appropriate = 'Appropriate',
-    Inappropriate = 'Inappropriate',
-    LessAppropriate = 'Less appropriate',
-    VeryAppropriate = 'Very appropriate'
+    Appropriate = 'ค่อนข้างเหมาะสม',
+    Inappropriate = 'ปานกลาง',
+    LessAppropriate = 'ไม่เหมาะสม',
+    VeryAppropriate = 'เหมาะสม'
 }
