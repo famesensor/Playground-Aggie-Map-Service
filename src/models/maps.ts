@@ -22,6 +22,9 @@ export interface plan {
     address: string;
     location: location;
     unit?: string;
+    soilUnit?: string;
+    gwavUnit?: string;
+    hidoUnit?: string;
     create_by?: string;
     update_by?: string;
     create_date?: admin.firestore.FieldValue;
