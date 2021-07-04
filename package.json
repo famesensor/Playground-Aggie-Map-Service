@@ -4,8 +4,8 @@
     "description": "this is service aggie",
     "main": "server.js",
     "scripts": {
-        "start": "node dist/server.ts",
-        "build": "tsc",
+        "start": "node dist/server.js",
+        "postinstall": "tsc && mv -i -v src/configs/serviceAccountKey.json dist/configs/ && rm -v -rf src",
         "dev": "nodemon --exec ts-node --files src/server.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
